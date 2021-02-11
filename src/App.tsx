@@ -9,14 +9,14 @@ import OnOff from "./components/OnOff/OnOff";
 
 
 function App() {
-    let [ratingValue,setRatingValue]=useState<RatingValueType>(4);
+    let [ratingValue, setRatingValue] = useState<RatingValueType>(4);
     let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
-    let [on,setOn]=useState(true);
+    let [on, setOn] = useState(true);
     return (
         <div className={'App'}>
 
 
-          {/*  <Rating value={1}/>
+            {/*  <Rating value={1}/>
             <Rating value={2}/>
             <Rating value={3}/>
             <Rating value={4}/>
@@ -27,11 +27,18 @@ function App() {
             <Rating value={ratingValue} onClick={setRatingValue}/>
             <Accordion collapsed={accordionCollapsed}
                        titleValue={'Menu'}
-                       onChange={()=>{setAccordionCollapsed(!accordionCollapsed)}}
-             items={['Olya','Ira','Karina']}/>
-           {/* <UnControlledOnOff/>*/}
-           {/*<OnOff on={on} onChange={setOn}/>*/}
-           <UnControlledOnOff onChange={setOn}/>{on.toString()}
+                       onChange={() => {
+                           setAccordionCollapsed(!accordionCollapsed)
+                       }}
+                       items={[{title: 'Olya', value: 1},
+                           {title: 'Ira', value: 2},
+                           {title: 'Karina', value: 3}]}
+                       onClick={(value)=>{alert('user Hi')}}/>
+
+
+            {/* <UnControlledOnOff/>*/}
+            {/*<OnOff on={on} onChange={setOn}/>*/}
+            <UnControlledOnOff onChange={setOn}/>{on.toString()}
         </div>
     );
 }
