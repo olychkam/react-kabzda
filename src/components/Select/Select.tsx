@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './Select.module.css';
 
 type ItemType = {
@@ -13,19 +13,25 @@ type SelectPropsType = {
 
 
 export function Select(props: SelectPropsType) {
+    const [active, setActive] = useState(false)
     const selectItems = props.items.find(i => i.value === props.value)
+    const toggleItems = () => setActive(!active)
+    const onItemClick=(value:any)=>{
+        props.onChange(value);
+        toggleItems();
+    }
     return (
         <>
-            <select>
-                <option value=''>Minsk</option>
-                <option value=''>Moscow</option>
-                <option value=''>Ross</option>
-            </select>
             <div className={styles.select}>
-            <h3>{selectItems && selectItems.title}</h3>
-            </div>
-            <div className={styles.items}>
-                {props.items.map(i => <div key={i.value}>{i.title}</div>)}
+                <span className={styles.main} onClick={toggleItems}>{selectItems && selectItems.title}</span>
+                {active &&
+                <div className={styles.items}>
+                    {props.items.map(i => <div
+                        key={i.value}
+                        onClick={() => {onItemClick(i.value)}}
+                    >{i.title}</div>)}
+                </div>
+                }
             </div>
         </>
     )
