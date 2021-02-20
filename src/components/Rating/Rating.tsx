@@ -31,3 +31,4 @@ function Star(props: StarPropsType) {
         {props.selected ? <b>Star </b> : ' Star'}
     </span>
 }
+

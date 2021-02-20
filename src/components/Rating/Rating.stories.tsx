@@ -11,7 +11,9 @@ export const Rating3 = () => <Rating value={3} onClick={x => x}/>;
 export const Rating4 = () => <Rating value={4} onClick={x => x}/>;
 export const Rating5 = () => <Rating value={5} onClick={x => x}/>;
 
+const RatingMemo=React.memo(Rating)
+
 export const RatingChanging = () => {
     const [rating, setRating] = useState<RatingValueType>(3)
-    return <Rating value={rating} onClick={setRating}/>
+    return <RatingMemo value={rating} onClick={setRating}/>
 }
